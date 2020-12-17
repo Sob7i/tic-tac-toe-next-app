@@ -1,0 +1,73 @@
+.square {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    width          : 130px;
+    height         : 130px;
+    /* width       : 100px;
+    height         : 100px; */
+    background     : #efefef;
+    border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
+    border         : 2px solid rgb(65, 64, 62);
+
+}
+
+.innerText {
+    font-size : 60px;
+    text-align: center;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        -webkit-transform: translateX(5px);
+        transform        : translateX(5px);
+    }
+
+    30% {
+        -webkit-transform: translateX(-5px);
+        transform        : translateX(-5px);
+    }
+
+    50% {
+        opacity          : .5;
+        -webkit-transform: translateX(3px);
+        transform        : translateX(3px);
+    }
+
+    65% {
+        -webkit-transform: translateX(-3px);
+        transform        : translateX(-3px);
+    }
+
+    80% {
+        -webkit-transform: translateX(2px);
+        transform        : translateX(2px);
+    }
+
+    100% {
+        opacity          : 1;
+        -webkit-transform: translateX(0);
+        transform        : translateX(0);
+    }
+}
+
+.winningSquare {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    width          : 130px;
+    height         : 130px;
+    background     : #efefef;
+    border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
+    border         : 2px solid rgb(65, 64, 62);
+}
+
+.innerTextWithBlink {
+    font-size    : 70px;
+    text-align   : center;
+    animation    : blink 1s linear infinite;
+}
