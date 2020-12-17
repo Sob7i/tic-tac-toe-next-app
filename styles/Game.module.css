@@ -1,0 +1,41 @@
+
+.game{
+    /* width: 100%; */
+    height: 100vh;
+
+    margin-top: 75px;
+}
+.toolsBar {
+    display: grid;
+    grid-template-columns: 75% 25%;
+
+    height: 60px;
+    width: 400px;
+
+    border-width: 2px;
+    border-style: groove;
+    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+    background: #efefef;
+    padding: 16px;
+    margin: auto;
+    margin-bottom: 50px;
+    
+}
+
+.quitIcon {
+    font-size:30px;
+    float: right;
+}
+
+.redoIcon {
+    padding-top: 3px;
+    margin: 1px 0 0 15px;
+    /* margin-left: 15px;
+    margin-top: 1px; */
+    font-size: 25px;
+}
+
+/* .gameCards {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+} */

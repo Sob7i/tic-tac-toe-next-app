@@ -1,0 +1,26 @@
+.score {
+    display              : grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap             : 5px;
+    width                : 400px;
+    margin: 50px auto;
+    padding: 7px;
+    padding-bottom: 13px;
+
+    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+    background: #efefef;
+    border-width: 2px;
+    border-style: groove;
+}
+
+.playerName {
+    text-align: center;
+}
+
+.playerScore {
+    text-align: center;
+}
+
+.draw{
+    text-align: center;
+}

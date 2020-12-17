@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import { Board } from '../components/board.jsx'
+import Game from '../components/game'
 
 export default function Home() {
   return (
@@ -11,13 +11,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Board />
+        <Game />
       </main>
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <div>
           Made with ❤️
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
