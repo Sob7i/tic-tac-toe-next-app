@@ -11,29 +11,32 @@ export const winningProbs: number[][] = [
     [2, 4, 6]
 ];
 
+// Calculate game result depending on user input and winning probabilities 👆🏻
 export const calcGameResult = (winningProbs: number[][], squares: string[]) => {
     let result: string;
     let winningProb: number[] = [];
     let winningindex: number;
 
     winningProbs.forEach((prob: number[], index: number) => {
-        const [a, b, c] = prob;
-        const squaresAreFilled = squares.every(sqr => !!sqr);
+        const [a, b, c]: number[] = prob;
+        const squaresAreEqual: boolean = !!squares[a] && squares[a] === squares[b] && squares[a] === squares[c];
+        const squaresAreFilled: boolean = squares.every(sqr => !!sqr);
 
-        if (!result && squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        if (squaresAreEqual) {
             result = squares[a];
             winningProb = [a, b, c];
             winningindex = index;
         }
-        //(!result && squaresAreFilled && (squares[a] === squares[b] && squares[a] !== squares[c]))
-        else if (!result && squaresAreFilled) {
+        else if (!squaresAreEqual && squaresAreFilled) {
             return result = 'DRAW'
         }
+        else return;
     });
 
     return { result, winningProb, winningindex };
 }
 
+// Track game state and set square value to a player sign (❌ or ⭕️)
 export const play = (index: number, player: string, setSquares: React.Dispatch<React.SetStateAction<any[]>>) => {
     setSquares(prevState => {
         const squares = [...prevState]
@@ -42,6 +45,7 @@ export const play = (index: number, player: string, setSquares: React.Dispatch<R
     });
 };
 
+// Calculate game score 
 export const calcScore = (gameResult: any) => (prevScore: any) => {
     if (!gameResult) return;
 
@@ -49,13 +53,13 @@ export const calcScore = (gameResult: any) => (prevScore: any) => {
 
     switch (gameResult) {
         case 'X':
-            newScore = { ...prevScore, X: ++prevScore.X };
+            newScore = { ...prevScore, x: ++prevScore.x };
             break;
         case 'O':
-            newScore = { ...prevScore, O: ++prevScore.O };
+            newScore = { ...prevScore, o: ++prevScore.o };
             break;
         case 'DRAW':
-            newScore = { ...prevScore, DRAW: ++prevScore.DRAW };
+            newScore = { ...prevScore, draw: ++prevScore.draw };
             break;
         default: newScore = prevScore;
             break;
@@ -64,85 +68,73 @@ export const calcScore = (gameResult: any) => (prevScore: any) => {
     return newScore;
 }
 
-export const getRandomInt = (min: number, max: number) =>
-    Math.floor(Math.random() * (max - min + 1)) + min;
-
-export const setupStrikethrough = (winningindex: number) => {
-    const defaultWidth = 300;
-    const diagonalWidth = 380;
+// Styling the winning squares with a strikethrough
+export const styleWinSquares = (winningindex: number) => {
     let winProbStyle: {};
 
     switch (winningindex) {
         case 0:
             winProbStyle = {
-                width: defaultWidth,
+                width: 300,
                 transform: "none",
-                top: 214,
-                left: 333,
-                visibility: 'visible'
+                top: 51,
+                left: 30
             };
             break;
         case 1:
             winProbStyle = {
-                width: defaultWidth,
+                width: 300,
                 transform: "none",
-                top: 340,
-                left: 333,
-                visibility: 'visible'
+                top: 175,
+                left: 30
             };
             break;
         case 2:
             winProbStyle = {
-                width: defaultWidth,
+                width: 300,
                 transform: "none",
-                top: 460,
-                left: 333,
-                visibility: 'visible'
+                top: 300,
+                left: 30
             };
             break;
         case 3:
             winProbStyle = {
                 transform: "rotate(90deg)",
-                top: 200,
-                left: -45,
-                width: defaultWidth,
-                visibility: 'visible'
+                top: 175,
+                left: -94,
+                width: 300
             };
             break;
         case 4:
             winProbStyle = {
-                transform: "rotate(90deg)",
-                top: 200,
-                left: 58,
-                width: defaultWidth,
-                visibility: 'visible'
+                transform: "rotate(89deg)",
+                top: 173,
+                left: 28,
+                width: 300
             };
             break;
         case 5:
             winProbStyle = {
                 transform: "rotate(90deg)",
-                top: 200,
-                left: 159,
-                width: defaultWidth,
-                visibility: 'visible'
+                top: 177,
+                left: 150,
+                width: 300
             };
             break;
         case 6:
             winProbStyle = {
                 transform: "rotate(45deg)",
-                top: 200,
-                left: 11,
-                width: diagonalWidth,
-                visibility: 'visible'
+                top: 174,
+                left: -16,
+                width: 400
             };
             break;
         case 7:
             winProbStyle = {
                 transform: "rotate(-45deg)",
-                top: 200,
-                left: 9,
-                width: diagonalWidth,
-                visibility: 'visible'
+                top: 176,
+                left: -24,
+                width: 400
             };
             break;
     }

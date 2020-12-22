@@ -5,7 +5,8 @@
     max-height    : 20%;
     margin        : 50px auto;
     padding-bottom: 13px;
-    border        : 2px groove;
+    border-width  : 2px;
+    border-style  : groove;
     border-radius : 255px 15px 225px / 15px 225px 15px 255px;
     background    : #efefef;
 }
@@ -20,17 +21,22 @@
     text-align: center;
 }
 
+.playerNameActive {
+    text-align     : center;
+    text-decoration: underline dotted red;
+}
+
 .playerScore {
     text-align: center;
 }
 
-.draw {
+#draw {
     text-align: center;
 }
 
 #result {
     text-align: center;
-    animation : resultAnimation 2s linear ;
+    animation : resultAnimation 2s linear;
 }
 
 #resultText {
@@ -50,13 +56,23 @@
         opacity          : 1;
         -webkit-transform: translateX(0px);
         transform        : translateX(0px);
-        animation-delay: 1s;
+        animation-delay  : 1s;
     }
 
     100% {
         opacity          : 0;
         -webkit-transform: translateX(100px);
         transform        : translateX(100px);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
 

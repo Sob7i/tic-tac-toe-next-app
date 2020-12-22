@@ -1,4 +1,10 @@
-.game{
+#game{
     height: 100vh;
     margin-top: 2rem;
+}
+
+@media (min-height: 800px) {
+    #game {
+        margin-top: 5rem;
+    }
 }

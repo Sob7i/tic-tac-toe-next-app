@@ -1,51 +1,31 @@
 .square {
+    position       : relative;
     display        : flex;
     justify-content: center;
     align-items    : center;
-    width: 7rem;
-    height: 7rem;
+    width          : 7rem;
+    height         : 7rem;
     background     : #efefef;
     border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
     border         : 2px solid rgb(65, 64, 62);
+}
+
+.winSquare {
+    position       : relative;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    width          : 7rem;
+    height         : 7rem;
+    background     : #efefef;
+    border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
+    border         : 2px dotted rgb(93, 92, 89);
 }
 
 .innerText {
-    font-size : 60px;
+    position  : absolute;
+    top       : -36%;
+    z-index   : 1;
+    font-size : 4rem;
     text-align: center;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity          : .5;
-    }
-
-    100% {
-        opacity          : 1;
-    }
-}
-
-.winningSquare {
-    display        : flex;
-    justify-content: center;
-    align-items    : center;
-    width: 7rem;
-    height: 7rem;
-    background     : #efefef;
-    border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
-    border         : 2px solid rgb(65, 64, 62);
-
-    transform: none;
-    top: 140px;
-    left: 15px;
-    width: 285;
-}
-
-.innerTextWithBlink {
-    font-size    : 60px;
-    text-align   : center;
-    animation    : blink 1s linear infinite;
 }

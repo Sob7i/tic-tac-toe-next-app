@@ -1,17 +1,15 @@
 .toolsbar {
     display: grid;
     grid-template-columns: 75% 25%;
-    /* height: 60px;
-    width: 400px; */
+    padding: 16px;
+    margin: auto;
+    margin-bottom: 50px;
     height: 4rem;
-    width: 23rem;
+    width: 22.5rem;
     border-width: 2px;
     border-style: groove;
     border-radius: 255px 15px 225px / 15px 225px 15px 255px;
     background: #efefef;
-    padding: 16px;
-    margin: auto;
-    margin-bottom: 50px;
 }
 
 .quitIcon {

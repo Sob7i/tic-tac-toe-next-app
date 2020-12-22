@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { play, calcGameResult, calcScore, setupStrikethrough, winningProbs } from '../helpers';
+import { play, calcGameResult, calcScore, styleWinSquares, winningProbs } from '../helpers';
 import { _SQARES, _PLAYER_X, _PLAYER_O } from '../constants';
 import Board from './board';
 import Score from './score';
@@ -10,9 +10,9 @@ import styles from '../styles/Game.module.css';
 
 const Game = () => {
     const [squares, setSquares] = useState(_SQARES);
-    const [player, setPlayer] = useState(_PLAYER_X);
+    const [nextPlayer, setNextPlayer] = useState(_PLAYER_X);
     const [score, setScore] = useState({ x: 0, o: 0, draw: 0 });
-    const [winningSquares, setWinningSquares] = useState([]);
+    const [winSquares, setWinSquares] = useState([]);
     const [gameStarted, setGameStarted] = useState(false);
     const [firstPlayerName, setFirstPlayerName] = useState('Player');
     const [secondPlayerName, setSecondPlayerName] = useState('Player');
@@ -24,13 +24,14 @@ const Game = () => {
 
     const handleClickSquare = (squareIndex: number) => (event: React.SyntheticEvent) => {
         if (result || !!squares[squareIndex]) return;
-        play(squareIndex, player, setSquares);
-        setPlayer(prevState => prevState === _PLAYER_X ? _PLAYER_O : _PLAYER_X);
+        play(squareIndex, nextPlayer, setSquares);
+        setNextPlayer((prevState: string) => prevState === _PLAYER_X ? _PLAYER_O : _PLAYER_X);
     };
 
-    const handleChangeNameInput = (setState: any) => (event: any) => {
+    const handleChangeName = (setState: any) => (event: any) => {
         const { value } = event.target;
-        setState(value);
+        if (!value) return;
+        return setState(value);
     }
 
     const startGame = (event: React.SyntheticEvent) =>
@@ -51,28 +52,24 @@ const Game = () => {
 
         if (result) {
             setScore(calcScore(result));
-            setWinningSquares(winningProb);
+            setWinSquares(winningProb);
             setScoreIndicator(scoreIndicator);
-            setStrikeThroughStyles(setupStrikethrough(winningindex));
-
-            const test = setupStrikethrough(winningindex);
-            console.log('test :>> ', test);
+            setStrikeThroughStyles(styleWinSquares(winningindex));
         }
 
         setTimeout(() => {
             if (result) {
                 setSquares(_SQARES);
-                setWinningSquares([]);
+                setWinSquares([]);
                 setScoreIndicator(null);
+                setStrikeThroughStyles(null);
             };
         }, 2000);
 
     }, [result]);
 
-    {/* {!gameResult && <p>Next player is {player}</p>} */ }
-    {/* {gameResult?.result && <p>Winner is {gameResult?.result}</p>} */ }
     return (
-        <div className={styles.game} >
+        <div id={styles.game} >
             {!gameStarted ?
                 (
                     <StartScreen
@@ -80,7 +77,7 @@ const Game = () => {
                         setFirstPlayerName={setFirstPlayerName}
                         secondPlayerName={secondPlayerName}
                         setSecondPlayerName={setSecondPlayerName}
-                        handleChangeNameInput={handleChangeNameInput}
+                        handleChangeName={handleChangeName}
                         startGame={startGame}
                     />
                 )
@@ -90,7 +87,7 @@ const Game = () => {
                         <Toolsbar restartGame={restartGame} quitGame={quitGame} />
                         <Board
                             squares={squares}
-                            winningSquares={winningSquares}
+                            winSquares={winSquares}
                             onClick={handleClickSquare}
                             strikeThroughStyles={strikeThroughStyles}
                         />
@@ -98,7 +95,7 @@ const Game = () => {
                             firstPlayerName={firstPlayerName}
                             secondPlayerName={secondPlayerName}
                             score={score}
-                            scoreIndicator={scoreIndicator}
+                            nextPlayer={nextPlayer}
                         />
                     </>
                 )

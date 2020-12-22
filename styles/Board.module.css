@@ -1,26 +1,29 @@
 .board {
+    position                : relative;
     display                 : grid;
     grid-template-columns   : repeat(3, auto);
     grid-gap                : 10px;
-    min-height              : 200px;
-    /* width                : 50vw;
-    height                  : 60vh; */
-    /* width                : 500px;
-    max-width               : 80%; */
     width                   : 28rem;
     max-width               : 80%;
+    min-height              : 200px;
     max-height              : 80%;
     margin                  : 20px auto;
     border-radius           : 5px;
 }
 
 #strikethrough {
-    visibility: hidden;
-    position: absolute;
-    height  : 5px;
+    position        : absolute;
+    height          : 5px;
+    background-color: rgb(233 47 47);
+    /* animation       : moveIn 1s ; */
 }
 
-#strikethroughChild {
-    background-color: red;
-    height          : 5px;
-}
+/* @keyframes moveIn {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+} */

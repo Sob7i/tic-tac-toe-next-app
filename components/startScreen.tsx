@@ -1,6 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserFriends, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/StartScreen.module.css';
 
@@ -9,17 +7,15 @@ const StartScreen = ({
     setFirstPlayerName,
     secondPlayerName,
     setSecondPlayerName,
-    handleChangeNameInput,
+    handleChangeName,
     startGame
 }) => {
     return (
-        <div className={styles.container}>
-            <div className={styles.test}>
+        <div id={styles.container}>
+            <div id={styles.titleWrapper}>
                 <img src='/tic-tac-toe.png' alt='tic-tac-toe' id={styles.img} />
                 <h1 id={styles.title}>Tic Tac Toe </h1>
             </div>
-            {/* <FontAwesomeIcon onClick={() => console.log('one')} id={styles.onePlayerOption} icon={faUser} />
-            <FontAwesomeIcon onClick={() => console.log('two')} id={styles.twoPlayersOption} icon={faUserFriends} /> */}
             <div id={styles.inputWrapper}>
                 <div id={styles.firstPlayerName}>
                     <label className={styles.label}>Player X name :</label>
@@ -28,7 +24,7 @@ const StartScreen = ({
                         name="First player name"
                         value={firstPlayerName}
                         className={styles.input}
-                        onChange={handleChangeNameInput(setFirstPlayerName)}
+                        onChange={handleChangeName(setFirstPlayerName)}
                         maxLength={10}
                     />
                 </div>
@@ -39,7 +35,7 @@ const StartScreen = ({
                         name="Second player name"
                         value={secondPlayerName}
                         className={styles.input}
-                        onChange={handleChangeNameInput(setSecondPlayerName)}
+                        onChange={handleChangeName(setSecondPlayerName)}
                         maxLength={10}
                     />
                 </div>

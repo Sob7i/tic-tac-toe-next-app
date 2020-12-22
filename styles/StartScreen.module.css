@@ -1,19 +1,18 @@
-.container {
+#container {
     margin-top        : 20%;
     display           : grid;
     grid-template-rows: repeat(auto-fill, 250px);
     grid-gap          : 20px;
     grid-template-areas:
-        " test test"
+        " titleWrapper titleWrapper"
         " . inputWrapper"
         " startGame startGame";
-    /* ". onePlayer twoPlayers ." */
 }
 
-.test {
+#titleWrapper {
     margin         : auto;
     width          : 100%;
-    grid-area      : test;
+    grid-area      : titleWrapper;
     display        : flex;
     justify-content: center;
 }
@@ -69,12 +68,12 @@
 
 #firstPlayerName {
     grid-area: firstPlayerName;
-    width: max-content;
+    width    : max-content;
 }
 
 #secondPlayerName {
     grid-area: secondPlayerName;
-    width: max-content;
+    width    : max-content;
 }
 
 #startGame {
@@ -83,7 +82,7 @@
     padding      : 10px;
     height       : 50px;
     width        : 200px;
-    margin       : 30px auto;
+    margin       : 10% auto;
     font-size    : 20px;
     border-width : 2px;
     border-style : groove;
