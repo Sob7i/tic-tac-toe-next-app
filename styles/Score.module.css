@@ -1,16 +1,19 @@
+.wrapper {
+    width         : 28rem;
+    max-width     : 80%;
+    height        : 7rem;
+    max-height    : 20%;
+    margin        : 50px auto;
+    padding-bottom: 13px;
+    border        : 2px groove;
+    border-radius : 255px 15px 225px / 15px 225px 15px 255px;
+    background    : #efefef;
+}
+
 .score {
     display              : grid;
     grid-template-columns: repeat(3, auto);
     grid-gap             : 5px;
-    width                : 400px;
-    margin: 50px auto;
-    padding: 7px;
-    padding-bottom: 13px;
-
-    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
-    background: #efefef;
-    border-width: 2px;
-    border-style: groove;
 }
 
 .playerName {
@@ -21,6 +24,45 @@
     text-align: center;
 }
 
-.draw{
+.draw {
     text-align: center;
+}
+
+#result {
+    text-align: center;
+    animation : resultAnimation 2s linear ;
+}
+
+#resultText {
+    margin     : auto;
+    font-size  : 4rem;
+    line-height: 7rem;
+}
+
+@keyframes resultAnimation {
+    0% {
+        opacity          : 0;
+        -webkit-transform: translateX(-100px);
+        transform        : translateX(-100px);
+    }
+
+    50% {
+        opacity          : 1;
+        -webkit-transform: translateX(0px);
+        transform        : translateX(0px);
+        animation-delay: 1s;
+    }
+
+    100% {
+        opacity          : 0;
+        -webkit-transform: translateX(100px);
+        transform        : translateX(100px);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        width         : 100%;
+        flex-direction: column;
+    }
 }

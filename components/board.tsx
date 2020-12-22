@@ -2,11 +2,11 @@ import React from 'react';
 
 import Square from './square';
 import styles from '../styles/Board.module.css'
-import {withWinningStyles} from './withWinningStyles';
+import { withWinningStyles } from './withWinningStyles';
 
 const EnhancedSquare = withWinningStyles(Square);
 
-const Board = ({ squares, winningSquares, onClick }) => {
+const Board = ({ squares, winningSquares, onClick, strikeThroughStyles }) => {
   return (
     <div className={styles.board}>
       {squares.map((square: any, i: number) => (
@@ -18,6 +18,9 @@ const Board = ({ squares, winningSquares, onClick }) => {
           onClick={onClick(i)}
         />
       ))}
+      <div id={styles.strikethrough} style={strikeThroughStyles}>
+        <div id={styles.strikethroughChild} ></div>
+      </div>
     </div>
   )
 }
