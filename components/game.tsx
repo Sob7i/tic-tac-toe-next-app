@@ -21,7 +21,7 @@ const Game = () => {
     const [secondPlayerName, setSecondPlayerName] = useState('Player');
     const [scoreIndicator, setScoreIndicator] = useState<string | null>(null);
     const [strikeThroughStyles, setStrikeThroughStyles] = useState<{}>({});
-console.log('firstPlayerName :>> ', firstPlayerName);
+
     const gameResult = calcGameResult(winningProbs, squares);
     const { result, winningProb, winningindex } = gameResult;
 
