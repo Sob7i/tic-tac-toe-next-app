@@ -15,15 +15,4 @@
     position        : absolute;
     height          : 5px;
     background-color: rgb(233 47 47);
-    /* animation       : moveIn 1s ; */
 }
-
-/* @keyframes moveIn {
-    0% {
-        width: 0%;
-    }
-
-    100% {
-        width: 100%;
-    }
-} */

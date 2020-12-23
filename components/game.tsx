@@ -1,52 +1,59 @@
 import React, { useEffect, useState } from "react";
 
-import { play, calcGameResult, calcScore, styleWinSquares, winningProbs } from '../helpers';
-import { _SQARES, _PLAYER_X, _PLAYER_O } from '../constants';
+import { play, calcGameResult, calcScore, styleWinSquares, winningProbs } from '../utils/helpers';
+import { PLAYER_X, PLAYER_O } from '../utils/constants';
+import { ISquare, IScore } from "../utils/types";
 import Board from './board';
 import Score from './score';
 import StartScreen from "./startScreen";
 import Toolsbar from './toolsbar';
 import styles from '../styles/Game.module.css';
 
+const defaultSquares: ISquare[] = new Array(9).fill(null);
+
 const Game = () => {
-    const [squares, setSquares] = useState(_SQARES);
-    const [nextPlayer, setNextPlayer] = useState(_PLAYER_X);
-    const [score, setScore] = useState({ x: 0, o: 0, draw: 0 });
-    const [winSquares, setWinSquares] = useState([]);
-    const [gameStarted, setGameStarted] = useState(false);
-    const [firstPlayerName, setFirstPlayerName] = useState('Player');
-    const [secondPlayerName, setSecondPlayerName] = useState('Player');
+    const [squares, setSquares] = useState<ISquare[]>(defaultSquares);
+    const [activePlayer, setActivePlayer] = useState<string>(PLAYER_X);
+    const [score, setScore] = useState<IScore>({ x: 0, o: 0, draw: 0 });
+    const [winSquares, setWinSquares] = useState<number[]>([]);
+    const [gameStarted, setGameStarted] = useState<boolean>(false);
+    const [firstPlayerName, setFirstPlayerName] = useState<string>('Player');
+    const [secondPlayerName, setSecondPlayerName] = useState<string>('Player');
     const [scoreIndicator, setScoreIndicator] = useState<string | null>(null);
-    const [strikeThroughStyles, setStrikeThroughStyles] = useState({});
+    const [strikeThroughStyles, setStrikeThroughStyles] = useState<{}>({});
 
     const gameResult = calcGameResult(winningProbs, squares);
     const { result, winningProb, winningindex } = gameResult;
 
     const handleClickSquare = (squareIndex: number) => (event: React.SyntheticEvent) => {
         if (result || !!squares[squareIndex]) return;
-        play(squareIndex, nextPlayer, setSquares);
-        setNextPlayer((prevState: string) => prevState === _PLAYER_X ? _PLAYER_O : _PLAYER_X);
+        play(squareIndex, activePlayer, setSquares);
+        setActivePlayer((prevState: string) => prevState === PLAYER_X ? PLAYER_O : PLAYER_X);
     };
 
-    const handleChangeName = (setState: any) => (event: any) => {
-        const { value } = event.target;
-        if (!value) return;
-        return setState(value);
-    }
+    const handleChangeName = (setState: React.Dispatch<React.SetStateAction<string>>) =>
+        (event: React.ChangeEvent<any>) => {
+            const { value } = event.target;
+            if (!value) return;
+            return setState(value);
+        }
 
     const startGame = (event: React.SyntheticEvent) =>
         setGameStarted(true);
 
+    const quitGame = (event: React.SyntheticEvent) => {
+        setGameStarted(false);
+        setSquares(defaultSquares);
+        setScore({ x: 0, o: 0, draw: 0 })
+    }
+
     const restartGame = (event: React.SyntheticEvent) => {
-        setSquares(_SQARES);
+        setSquares(defaultSquares);
         setScore({ x: 0, o: 0, draw: 0 });
     };
 
-    const quitGame = (event: React.SyntheticEvent) =>
-        setGameStarted(false);
-
     useEffect(() => {
-        const scoreIndicator = result === 'X' ? 'Player X wins!'
+        const scoreIndicator: string = result === 'X' ? 'Player X wins!'
             : result === 'O' ? 'Player O wins!'
                 : 'It is a draw!';
 
@@ -59,7 +66,7 @@ const Game = () => {
 
         setTimeout(() => {
             if (result) {
-                setSquares(_SQARES);
+                setSquares(defaultSquares);
                 setWinSquares([]);
                 setScoreIndicator(null);
                 setStrikeThroughStyles(null);
@@ -83,7 +90,7 @@ const Game = () => {
                 )
                 :
                 (
-                    <>
+                    <div id={styles.container}>
                         <Toolsbar restartGame={restartGame} quitGame={quitGame} />
                         <Board
                             squares={squares}
@@ -95,9 +102,14 @@ const Game = () => {
                             firstPlayerName={firstPlayerName}
                             secondPlayerName={secondPlayerName}
                             score={score}
-                            nextPlayer={nextPlayer}
+                            activePlayer={activePlayer}
                         />
-                    </>
+                        { !!scoreIndicator &&
+                            <div id={styles.scoreIndicator}>
+                                <p id={styles.indicatorContent}>{scoreIndicator}</p>
+                            </div>
+                        }
+                    </div>
                 )
             }
         </div>

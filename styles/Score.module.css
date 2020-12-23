@@ -19,11 +19,13 @@
 
 .playerName {
     text-align: center;
+    color     : rgb(87, 87, 87);
 }
 
-.playerNameActive {
+.activePlayerName {
     text-align     : center;
-    text-decoration: underline dotted red;
+    text-decoration: underline wavy;
+    font-weight    : bold;
 }
 
 .playerScore {
@@ -32,48 +34,17 @@
 
 #draw {
     text-align: center;
+    color     : rgb(87, 87, 87);
 }
 
 #result {
     text-align: center;
-    animation : resultAnimation 2s linear;
 }
 
 #resultText {
     margin     : auto;
     font-size  : 4rem;
     line-height: 7rem;
-}
-
-@keyframes resultAnimation {
-    0% {
-        opacity          : 0;
-        -webkit-transform: translateX(-100px);
-        transform        : translateX(-100px);
-    }
-
-    50% {
-        opacity          : 1;
-        -webkit-transform: translateX(0px);
-        transform        : translateX(0px);
-        animation-delay  : 1s;
-    }
-
-    100% {
-        opacity          : 0;
-        -webkit-transform: translateX(100px);
-        transform        : translateX(100px);
-    }
-}
-
-@keyframes blink {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 
 @media (max-width: 600px) {

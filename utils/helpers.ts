@@ -1,3 +1,4 @@
+import { IScore, GameResult, IGameResultType } from './types';
 
 // Winning probabilities 
 export const winningProbs: number[][] = [
@@ -13,9 +14,9 @@ export const winningProbs: number[][] = [
 
 // Calculate game result depending on user input and winning probabilities 👆🏻
 export const calcGameResult = (winningProbs: number[][], squares: string[]) => {
-    let result: string;
-    let winningProb: number[] = [];
-    let winningindex: number;
+    let result: IGameResultType[GameResult];
+    let winningProb: number[] | [] = [];
+    let winningindex: number | undefined;
 
     winningProbs.forEach((prob: number[], index: number) => {
         const [a, b, c]: number[] = prob;
@@ -46,27 +47,28 @@ export const play = (index: number, player: string, setSquares: React.Dispatch<R
 };
 
 // Calculate game score 
-export const calcScore = (gameResult: any) => (prevScore: any) => {
-    if (!gameResult) return;
+export const calcScore = (gameResult: IGameResultType[GameResult]) =>
+    (prevScore: IScore) => {
+        if (!gameResult) return;
 
-    let newScore: any;
+        let newScore: IScore;
 
-    switch (gameResult) {
-        case 'X':
-            newScore = { ...prevScore, x: ++prevScore.x };
-            break;
-        case 'O':
-            newScore = { ...prevScore, o: ++prevScore.o };
-            break;
-        case 'DRAW':
-            newScore = { ...prevScore, draw: ++prevScore.draw };
-            break;
-        default: newScore = prevScore;
-            break;
+        switch (gameResult) {
+            case 'X':
+                newScore = { ...prevScore, x: ++prevScore.x };
+                break;
+            case 'O':
+                newScore = { ...prevScore, o: ++prevScore.o };
+                break;
+            case 'DRAW':
+                newScore = { ...prevScore, draw: ++prevScore.draw };
+                break;
+            default: newScore = prevScore;
+                break;
+        }
+
+        return newScore;
     }
-
-    return newScore;
-}
 
 // Styling the winning squares with a strikethrough
 export const styleWinSquares = (winningindex: number) => {
@@ -124,7 +126,7 @@ export const styleWinSquares = (winningindex: number) => {
         case 6:
             winProbStyle = {
                 transform: "rotate(45deg)",
-                top: 174,
+                top: 176,
                 left: -16,
                 width: 400
             };

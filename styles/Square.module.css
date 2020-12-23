@@ -10,6 +10,13 @@
     border         : 2px solid rgb(65, 64, 62);
 }
 
+.innerText {
+    position  : absolute;
+    top       : -36%;
+    font-size : 4rem;
+    text-align: center;
+}
+
 .winSquare {
     position       : relative;
     display        : flex;
@@ -20,12 +27,4 @@
     background     : #efefef;
     border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
     border         : 2px dotted rgb(93, 92, 89);
-}
-
-.innerText {
-    position  : absolute;
-    top       : -36%;
-    z-index   : 1;
-    font-size : 4rem;
-    text-align: center;
 }

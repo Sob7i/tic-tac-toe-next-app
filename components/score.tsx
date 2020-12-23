@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { _PLAYER_X, _PLAYER_O } from '../constants';
+import { PLAYER_X, PLAYER_O } from '../utils/constants';
 import styles from '../styles/Score.module.css';
 
 const Score = ({
     firstPlayerName,
     secondPlayerName,
     score,
-    nextPlayer
+    activePlayer
 }) => (
         <div className={styles.wrapper}>
             <div className={styles.score}>
                 <div className={styles.playerScore}>
-                    <p className={nextPlayer === _PLAYER_X ? styles.playerNameActive : styles.playerName}>
+                    <p className={activePlayer === PLAYER_X ? styles.activePlayerName : styles.playerName}>
                         {firstPlayerName} (X)
                     </p>
                     <span>{score.x}</span>
@@ -22,7 +22,7 @@ const Score = ({
                     <span>{score.draw}</span>
                 </div>
                 <div className={styles.playerScore}>
-                    <p className={nextPlayer === _PLAYER_O ? styles.playerNameActive : styles.playerName}>
+                    <p className={activePlayer === PLAYER_O ? styles.activePlayerName : styles.playerName}>
                         {secondPlayerName} (O)
                     </p>
                     <span>{score.o}</span>

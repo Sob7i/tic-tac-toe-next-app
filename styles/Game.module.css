@@ -1,6 +1,41 @@
-#game{
-    height: 100vh;
+#game {
+    height    : 100vh;
     margin-top: 2rem;
+}
+
+#container {
+position: relative;
+}
+
+#scoreIndicator {
+    position     : absolute;
+    top          : 37%;
+    height       : 100px;
+    width        : 100%;
+    background   : black;
+    opacity      : .8;
+    animation    : changeOpacity .5s ease-in-out;
+    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+    border       : 2px groove rgb(255 255 255);
+}
+
+#indicatorContent {
+    margin     : auto;
+    text-align : center;
+    line-height: 6rem;
+    font-size  : 3rem;
+    color      : white;
+}
+
+@keyframes changeOpacity {
+    0% {
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: .8;
+    }
 }
 
 @media (min-height: 800px) {

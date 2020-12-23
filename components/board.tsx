@@ -18,7 +18,9 @@ const Board = ({ squares, winSquares, onClick, strikeThroughStyles }) => {
           onClick={onClick(i)}
         />
       ))}
-     {!!strikeThroughStyles && <div id={styles.strikethrough} style={strikeThroughStyles} />}
+      {!!strikeThroughStyles &&
+        <div id={styles.strikethrough} style={strikeThroughStyles} />
+      }
     </div>
   )
 }
