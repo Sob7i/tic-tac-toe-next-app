@@ -43,3 +43,9 @@ position: relative;
         margin-top: 5rem;
     }
 }
+
+@media (max-width: 426) {
+    #game {
+        margin-top: 1rem;
+    }
+}

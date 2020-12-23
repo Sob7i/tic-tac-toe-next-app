@@ -14,22 +14,25 @@ export const winningProbs: number[][] = [
 
 // Calculate game result depending on user input and winning probabilities 👆🏻
 export const calcGameResult = (winningProbs: number[][], squares: string[]) => {
-    let result: IGameResultType[GameResult];
+    let result: IGameResultType[GameResult] | null = null;
     let winningProb: number[] | [] = [];
     let winningindex: number | undefined;
+    
+    const squaresAreFilled: boolean = squares.every(sqr => !!sqr);
 
     winningProbs.forEach((prob: number[], index: number) => {
         const [a, b, c]: number[] = prob;
         const squaresAreEqual: boolean = !!squares[a] && squares[a] === squares[b] && squares[a] === squares[c];
-        const squaresAreFilled: boolean = squares.every(sqr => !!sqr);
 
         if (squaresAreEqual) {
             result = squares[a];
             winningProb = [a, b, c];
             winningindex = index;
+            return;
         }
-        else if (!squaresAreEqual && squaresAreFilled) {
-            return result = 'DRAW'
+        else if (!result && !squaresAreEqual && squaresAreFilled) {
+            result = 'DRAW'
+            return;
         }
         else return;
     });
