@@ -55,7 +55,8 @@ const Game = () => {
     useEffect(() => {
         const scoreIndicator: string = result === 'X' ? 'Player X wins!'
             : result === 'O' ? 'Player O wins!'
-                : 'It is a draw!';
+                : result === 'DRAW' ? 'It is a draw!'
+                    : null;
 
         if (result) {
             setScore(calcScore(result));
