@@ -17,8 +17,8 @@ const Game = () => {
     const [score, setScore] = useState<IScore>({ x: 0, o: 0, draw: 0 });
     const [winSquares, setWinSquares] = useState<number[]>([]);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
-    const [firstPlayerName, setFirstPlayerName] = useState('Player');
-    const [secondPlayerName, setSecondPlayerName] = useState('Player');
+    const [firstPlayerName, setFirstPlayerName] = useState<string>('Player');
+    const [secondPlayerName, setSecondPlayerName] = useState<string>('Player');
     const [scoreIndicator, setScoreIndicator] = useState<string | null>(null);
     const [strikeThroughStyles, setStrikeThroughStyles] = useState<{}>({});
 
