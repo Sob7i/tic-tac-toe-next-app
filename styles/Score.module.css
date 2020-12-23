@@ -1,26 +1,55 @@
+.wrapper {
+    width         : 28rem;
+    max-width     : 80%;
+    height        : 7rem;
+    max-height    : 20%;
+    margin        : 50px auto;
+    padding-bottom: 13px;
+    border-width  : 2px;
+    border-style  : groove;
+    border-radius : 255px 15px 225px / 15px 225px 15px 255px;
+    background    : #efefef;
+}
+
 .score {
     display              : grid;
     grid-template-columns: repeat(3, auto);
     grid-gap             : 5px;
-    width                : 400px;
-    margin: 50px auto;
-    padding: 7px;
-    padding-bottom: 13px;
-
-    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
-    background: #efefef;
-    border-width: 2px;
-    border-style: groove;
 }
 
 .playerName {
     text-align: center;
+    color     : rgb(87, 87, 87);
+}
+
+.activePlayerName {
+    text-align     : center;
+    text-decoration: underline wavy;
+    font-weight    : bold;
 }
 
 .playerScore {
     text-align: center;
 }
 
-.draw{
+#draw {
     text-align: center;
+    color     : rgb(87, 87, 87);
+}
+
+#result {
+    text-align: center;
+}
+
+#resultText {
+    margin     : auto;
+    font-size  : 4rem;
+    line-height: 7rem;
+}
+
+@media (max-width: 600px) {
+    .grid {
+        width         : 100%;
+        flex-direction: column;
+    }
 }

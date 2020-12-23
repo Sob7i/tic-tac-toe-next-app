@@ -1,73 +1,117 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedo, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { play, calcGameResult, calcScore, winningProbs } from '../helpers';
-import styles from '../styles/Game.module.css';
+import { play, calcGameResult, calcScore, styleWinSquares, winningProbs } from '../utils/helpers';
+import { PLAYER_X, PLAYER_O } from '../utils/constants';
+import { ISquare, IScore } from "../utils/types";
 import Board from './board';
 import Score from './score';
+import StartScreen from "./startScreen";
+import Toolsbar from './toolsbar';
+import styles from '../styles/Game.module.css';
 
-const SQARES = new Array(9).fill(null);
-const PLAYER_X = 'X';
-const PLAYER_O = 'O';
-const SCORE = { X: 0, O: 0, DRAW: 0 };
+const defaultSquares: ISquare[] = new Array(9).fill(null);
 
 const Game = () => {
-    const [squares, setSquares] = useState(SQARES);
-    const [player, setPlayer] = useState(PLAYER_X);
-    const [score, setScore] = useState(SCORE);
-    const [winningSquares, setWinningSquares] = useState([]);
-
-    const [toggleStyle, setToggleStyle] = useState(true)
+    const [squares, setSquares] = useState<ISquare[]>(defaultSquares);
+    const [activePlayer, setActivePlayer] = useState<string>(PLAYER_X);
+    const [score, setScore] = useState<IScore>({ x: 0, o: 0, draw: 0 });
+    const [winSquares, setWinSquares] = useState<number[]>([]);
+    const [gameStarted, setGameStarted] = useState<boolean>(false);
+    const [firstPlayerName, setFirstPlayerName] = useState<string>('Player');
+    const [secondPlayerName, setSecondPlayerName] = useState<string>('Player');
+    const [scoreIndicator, setScoreIndicator] = useState<string | null>(null);
+    const [strikeThroughStyles, setStrikeThroughStyles] = useState<{}>({});
 
     const gameResult = calcGameResult(winningProbs, squares);
+    const { result, winningProb, winningindex } = gameResult;
 
-    const handleClick = (squareIndex: number) => (event: React.SyntheticEvent) => {
-        if (gameResult?.result) return;
-        play(squareIndex, player, setSquares);
-        setPlayer(prevState => prevState === PLAYER_X ? PLAYER_O : PLAYER_X);
+    const handleClickSquare = (squareIndex: number) => (event: React.SyntheticEvent) => {
+        if (result || !!squares[squareIndex]) return;
+        play(squareIndex, activePlayer, setSquares);
+        setActivePlayer((prevState: string) => prevState === PLAYER_X ? PLAYER_O : PLAYER_X);
     };
+
+    const handleChangeName = (setState: React.Dispatch<React.SetStateAction<string>>) =>
+        (event: React.ChangeEvent<any>) => {
+            const { value } = event.target;
+            if (!value) return;
+            return setState(value);
+        }
+
+    const startGame = (event: React.SyntheticEvent) =>
+        setGameStarted(true);
+
+    const quitGame = (event: React.SyntheticEvent) => {
+        setGameStarted(false);
+        setSquares(defaultSquares);
+        setScore({ x: 0, o: 0, draw: 0 })
+    }
 
     const restartGame = (event: React.SyntheticEvent) => {
-        setSquares(SQARES)
-        setScore(SCORE);
+        setSquares(defaultSquares);
+        setScore({ x: 0, o: 0, draw: 0 });
     };
 
-    const quitGame = (event: React.SyntheticEvent) =>
-        setToggleStyle(!toggleStyle)
-
     useEffect(() => {
-        if (gameResult?.result) {
-            setScore(calcScore(gameResult.result));
-            setWinningSquares(gameResult.winningSquares)
+        const scoreIndicator: string = result === 'X' ? 'Player X wins!'
+            : result === 'O' ? 'Player O wins!'
+                : 'It is a draw!';
+
+        if (result) {
+            setScore(calcScore(result));
+            setWinSquares(winningProb);
+            setScoreIndicator(scoreIndicator);
+            setStrikeThroughStyles(styleWinSquares(winningindex));
         }
 
         setTimeout(() => {
-            if (gameResult?.result) {
-                setSquares(SQARES);
-                setWinningSquares([])
+            if (result) {
+                setSquares(defaultSquares);
+                setWinSquares([]);
+                setScoreIndicator(null);
+                setStrikeThroughStyles(null);
             };
         }, 2000);
 
-    }, [gameResult?.result]);
+    }, [result]);
 
     return (
-        <div className={styles.game} >
-            <div className={styles.toolsBar}>
-                <img src='/tic-tac-toe.png' width='34px' alt='tic-tac-toe' />
-                <span>
-                    <FontAwesomeIcon onClick={restartGame} className={styles.redoIcon} icon={faRedo} />
-                    <FontAwesomeIcon onClick={quitGame} className={styles.quitIcon} icon={faTimes} />
-                </span>
-            </div>
-            {/* {!gameResult && <p>Next player is {player}</p>} */}
-            {/* {gameResult?.result && <p>Winner is {gameResult?.result}</p>} */}
-            <Board squares={squares} winningSquares={winningSquares} onClick={handleClick} />
-            <Score
-                playerX_Score={score.X}
-                playerO_Score={score.O}
-                draw={score.DRAW}
-            />
+        <div id={styles.game} >
+            {!gameStarted ?
+                (
+                    <StartScreen
+                        firstPlayerName={firstPlayerName}
+                        setFirstPlayerName={setFirstPlayerName}
+                        secondPlayerName={secondPlayerName}
+                        setSecondPlayerName={setSecondPlayerName}
+                        handleChangeName={handleChangeName}
+                        startGame={startGame}
+                    />
+                )
+                :
+                (
+                    <div id={styles.container}>
+                        <Toolsbar restartGame={restartGame} quitGame={quitGame} />
+                        <Board
+                            squares={squares}
+                            winSquares={winSquares}
+                            onClick={handleClickSquare}
+                            strikeThroughStyles={strikeThroughStyles}
+                        />
+                        <Score
+                            firstPlayerName={firstPlayerName}
+                            secondPlayerName={secondPlayerName}
+                            score={score}
+                            activePlayer={activePlayer}
+                        />
+                        { !!scoreIndicator &&
+                            <div id={styles.scoreIndicator}>
+                                <p id={styles.indicatorContent}>{scoreIndicator}</p>
+                            </div>
+                        }
+                    </div>
+                )
+            }
         </div>
     );
 };

@@ -1,0 +1,38 @@
+.toolsbar {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    padding: 16px;
+    margin: auto;
+    margin-bottom: 50px;
+    height: 4rem;
+    width: 22.5rem;
+    border-width: 2px;
+    border-style: groove;
+    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+    background: #efefef;
+}
+
+.quitIcon {
+    font-size:30px;
+    float: right;
+}
+
+.quitIcon:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+.redoIcon {
+    padding-top: 3px;
+    margin: 1px 0 0 5px;
+    font-size: 25px;
+}
+
+.redoIcon:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+}

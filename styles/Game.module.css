@@ -1,41 +1,45 @@
-
-.game{
-    /* width: 100%; */
-    height: 100vh;
-
-    margin-top: 75px;
+#game {
+    height    : 100vh;
+    margin-top: 2rem;
 }
-.toolsBar {
-    display: grid;
-    grid-template-columns: 75% 25%;
 
-    height: 60px;
-    width: 400px;
+#container {
+position: relative;
+}
 
-    border-width: 2px;
-    border-style: groove;
+#scoreIndicator {
+    position     : absolute;
+    top          : 37%;
+    height       : 100px;
+    width        : 100%;
+    background   : black;
+    opacity      : .8;
+    animation    : changeOpacity .5s ease-in-out;
     border-radius: 255px 15px 225px / 15px 225px 15px 255px;
-    background: #efefef;
-    padding: 16px;
-    margin: auto;
-    margin-bottom: 50px;
-    
+    border       : 2px groove rgb(255 255 255);
 }
 
-.quitIcon {
-    font-size:30px;
-    float: right;
+#indicatorContent {
+    margin     : auto;
+    text-align : center;
+    line-height: 6rem;
+    font-size  : 3rem;
+    color      : white;
 }
 
-.redoIcon {
-    padding-top: 3px;
-    margin: 1px 0 0 15px;
-    /* margin-left: 15px;
-    margin-top: 1px; */
-    font-size: 25px;
+@keyframes changeOpacity {
+    0% {
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: .8;
+    }
 }
 
-/* .gameCards {
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-} */
+@media (min-height: 800px) {
+    #game {
+        margin-top: 5rem;
+    }
+}
