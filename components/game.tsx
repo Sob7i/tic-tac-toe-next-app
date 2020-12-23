@@ -34,7 +34,6 @@ const Game = () => {
     const handleChangeName = (setState: React.Dispatch<React.SetStateAction<string>>) =>
         (event: React.ChangeEvent<any>) => {
             const { value } = event.target;
-            if (!value) return;
             return setState(value);
         }
 
