@@ -1,30 +1,31 @@
 .square {
-    position       : relative;
-    display        : flex;
-    justify-content: center;
-    align-items    : center;
-    width          : 7rem;
-    height         : 7rem;
-    background     : #efefef;
-    border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
-    border         : 2px solid rgb(65, 64, 62);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+  border: 2px solid rgb(65, 64, 62);
+  background: #ffffff;
 }
 
 .innerText {
-    position  : absolute;
-    top       : -36%;
-    font-size : 4rem;
-    text-align: center;
+  position: absolute;
+  top: -36%;
+  font-size: 4rem;
+  text-align: center;
 }
 
 .winSquare {
-    position       : relative;
-    display        : flex;
-    justify-content: center;
-    align-items    : center;
-    width          : 7rem;
-    height         : 7rem;
-    background     : #efefef;
-    border-radius  : 255px 15px 225px / 15px 225px 15px 255px;
-    border         : 2px dotted rgb(93, 92, 89);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background: #ffffff;
 }
