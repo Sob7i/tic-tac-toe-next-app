@@ -1,51 +1,50 @@
 #game {
-    height    : 100vh;
-    margin-top: 2rem;
+  height: 100vh;
+  margin-top: 2rem;
 }
 
 #container {
-position: relative;
+  position: relative;
 }
 
 #scoreIndicator {
-    position     : absolute;
-    top          : 37%;
-    height       : 100px;
-    width        : 100%;
-    background   : black;
-    opacity      : .8;
-    animation    : changeOpacity .5s ease-in-out;
-    border-radius: 255px 15px 225px / 15px 225px 15px 255px;
-    border       : 2px groove rgb(255 255 255);
+  position: absolute;
+  top: 37%;
+  height: 100px;
+  width: 100%;
+  background: black;
+  opacity: 0.8;
+  animation: changeOpacity 0.5s ease-in-out;
+  border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+  border: 2px groove rgb(255 255 255);
 }
 
 #indicatorContent {
-    margin     : auto;
-    text-align : center;
-    line-height: 6rem;
-    font-size  : 3rem;
-    color      : white;
+  margin: auto;
+  text-align: center;
+  line-height: 6rem;
+  font-size: 3rem;
+  color: white;
 }
 
 @keyframes changeOpacity {
-    0% {
-        opacity: 0;
+  0% {
+    opacity: 0;
+  }
 
-    }
-
-    100% {
-        opacity: .8;
-    }
+  100% {
+    opacity: 0.8;
+  }
 }
 
 @media (min-height: 800px) {
-    #game {
-        margin-top: 5rem;
-    }
+  #game {
+    margin-top: 5rem;
+  }
 }
 
 @media (max-width: 426) {
-    #game {
-        margin-top: 1rem;
-    }
+  #game {
+    margin-top: 1rem;
+  }
 }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import styles from '../styles/Square.module.css';
+import styles from '../styles/Square.module.css'
 
 const Square = ({ value, onClick, isWinSquare }) => (
   <div
@@ -11,5 +11,4 @@ const Square = ({ value, onClick, isWinSquare }) => (
   </div>
 )
 
-
-export default Square;
+export default Square

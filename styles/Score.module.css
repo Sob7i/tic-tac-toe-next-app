@@ -1,54 +1,54 @@
 .wrapper {
-    width         : 28rem;
-    max-width     : 80%;
-    height        : 7rem;
-    max-height    : 20%;
-    margin        : 50px auto;
-    padding-bottom: 13px;
-    border-width  : 2px;
-    border-style  : groove;
-    border-radius : 255px 15px 225px / 15px 225px 15px 255px;
+  width: 28rem;
+  max-width: 80%;
+  height: 7rem;
+  max-height: 20%;
+  margin: 50px auto;
+  padding-bottom: 13px;
+  border-width: 2px;
+  border-style: groove;
+  border-radius: 255px 15px 225px / 15px 225px 15px 255px;
 }
 
 .score {
-    display              : grid;
-    grid-template-columns: repeat(3, auto);
-    grid-gap             : 5px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 5px;
 }
 
 .playerName {
-    text-align: center;
-    color     : rgb(87, 87, 87);
+  text-align: center;
+  color: rgb(87, 87, 87);
 }
 
 .activePlayerName {
-    text-align     : center;
-    text-decoration: underline wavy;
-    font-weight    : bold;
+  text-align: center;
+  text-decoration: underline wavy;
+  font-weight: bold;
 }
 
 .playerScore {
-    text-align: center;
+  text-align: center;
 }
 
 #draw {
-    text-align: center;
-    color     : rgb(87, 87, 87);
+  text-align: center;
+  color: rgb(87, 87, 87);
 }
 
 #result {
-    text-align: center;
+  text-align: center;
 }
 
 #resultText {
-    margin     : auto;
-    font-size  : 4rem;
-    line-height: 7rem;
+  margin: auto;
+  font-size: 4rem;
+  line-height: 7rem;
 }
 
 @media (max-width: 600px) {
-    .grid {
-        width         : 100%;
-        flex-direction: column;
-    }
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
 }

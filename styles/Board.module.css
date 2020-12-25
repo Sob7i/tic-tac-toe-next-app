@@ -1,18 +1,18 @@
 .board {
-    position                : relative;
-    display                 : grid;
-    grid-template-columns   : repeat(3, auto);
-    grid-gap                : 10px;
-    width                   : 28rem;
-    max-width               : 80%;
-    min-height              : 200px;
-    max-height              : 80%;
-    margin                  : 20px auto;
-    border-radius           : 5px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 10px;
+  width: 28rem;
+  max-width: 80%;
+  min-height: 200px;
+  max-height: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
 }
 
 #strikethrough {
-    position        : absolute;
-    height          : 5px;
-    background-color: rgb(233 47 47);
+  position: absolute;
+  height: 5px;
+  background-color: rgb(233 47 47);
 }
