@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import Square from './square';
+import Square from './square'
 import styles from '../styles/Board.module.css'
-import { withWinStyles } from './withWinStyles';
+import { withWinStyles } from './withWinStyles'
 
-const EnhancedSquare = withWinStyles(Square);
+const EnhancedSquare = withWinStyles(Square)
 
 const Board = ({ squares, winSquares, onClick, strikeThroughStyles }) => {
   return (
@@ -18,11 +18,11 @@ const Board = ({ squares, winSquares, onClick, strikeThroughStyles }) => {
           onClick={onClick(i)}
         />
       ))}
-      {!!strikeThroughStyles &&
+      {!!strikeThroughStyles && (
         <div id={styles.strikethrough} style={strikeThroughStyles} />
-      }
+      )}
     </div>
   )
 }
 
-export default Board;
+export default Board
