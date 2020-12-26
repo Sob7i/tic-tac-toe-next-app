@@ -13,11 +13,6 @@ export default function Home() {
       <main className={styles.main}>
         <Game />
       </main>
-      {/* <footer className={styles.footer}>
-        <div>
-          Made with ❤️
-        </div>
-      </footer> */}
     </div>
   )
 }
