@@ -13,7 +13,13 @@ const StartScreen = ({
   return (
     <div id={styles.container}>
       <div id={styles.titleWrapper}>
-        <img src="/tic-tac-toe.png" alt="tic-tac-toe" id={styles.img} />
+        <img
+          id={styles.img}
+          src="/tic-tac-toe.png"
+          alt="tic-tac-toe"
+          width="100"
+          height="100"
+        />
         <h1 id={styles.title}>Tic Tac Toe </h1>
       </div>
       <div id={styles.inputWrapper}>
