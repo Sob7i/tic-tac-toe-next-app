@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import {
   play,
@@ -17,7 +17,7 @@ import styles from '../styles/Game.module.css'
 
 const defaultSquares: ISquare[] = new Array(9).fill(null)
 
-const Game = () => {
+const Game = (): JSX.Element => {
   const [squares, setSquares] = useState<ISquare[]>(defaultSquares)
   const [activePlayer, setActivePlayer] = useState<string>(PLAYER_X)
   const [score, setScore] = useState<IScore>({ x: 0, o: 0, draw: 0 })
@@ -48,18 +48,21 @@ const Game = () => {
     return setState(value)
   }
 
-  const startGame = (event: React.SyntheticEvent) => setGameStarted(true)
+  const startGame = useCallback(
+    (event: React.SyntheticEvent) => setGameStarted(true),
+    [],
+  )
 
-  const quitGame = (event: React.SyntheticEvent) => {
+  const quitGame = useCallback((event: React.SyntheticEvent) => {
     setGameStarted(false)
     setSquares(defaultSquares)
     setScore({ x: 0, o: 0, draw: 0 })
-  }
+  }, [])
 
-  const restartGame = (event: React.SyntheticEvent) => {
+  const restartGame = useCallback((event: React.SyntheticEvent) => {
     setSquares(defaultSquares)
     setScore({ x: 0, o: 0, draw: 0 })
-  }
+  }, [])
 
   useEffect(() => {
     const scoreIndicator: string =
