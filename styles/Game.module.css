@@ -1,9 +1,9 @@
-#game {
+#container {
   height: 100vh;
   margin-top: 2rem;
 }
 
-#container {
+#game {
   position: relative;
 }
 

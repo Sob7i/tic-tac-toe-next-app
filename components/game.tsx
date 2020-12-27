@@ -92,7 +92,7 @@ const Game = (): JSX.Element => {
   }, [result])
 
   return (
-    <div id={styles.game}>
+    <div id={styles.container}>
       {!gameStarted ? (
         <StartScreen
           firstPlayerName={firstPlayerName}
@@ -103,7 +103,7 @@ const Game = (): JSX.Element => {
           startGame={startGame}
         />
       ) : (
-        <div id={styles.container}>
+        <div id={styles.game}>
           <Toolsbar restartGame={restartGame} quitGame={quitGame} />
           <Board
             squares={squares}
