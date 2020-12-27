@@ -3,7 +3,12 @@ import React from 'react'
 import { PLAYER_X, PLAYER_O } from '../utils/constants'
 import styles from '../styles/Score.module.css'
 
-const Score = ({ firstPlayerName, secondPlayerName, score, activePlayer }) => (
+const Score = ({
+  firstPlayerName,
+  secondPlayerName,
+  score,
+  activePlayer,
+}): JSX.Element => (
   <div className={styles.wrapper}>
     <div className={styles.score}>
       <div className={styles.playerScore}>
