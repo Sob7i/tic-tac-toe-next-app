@@ -1,6 +1,6 @@
 #container {
   height: 100vh;
-  margin-top: 2rem;
+  padding: 7em 5em;
 }
 
 #game {
@@ -37,14 +37,8 @@
   }
 }
 
-@media (min-height: 800px) {
-  #game {
-    margin-top: 5rem;
-  }
-}
-
-@media (max-width: 426) {
-  #game {
-    margin-top: 1rem;
+@media (min-width: 1023px) {
+  #container {
+    padding: 6.5em 5em;
   }
 }
